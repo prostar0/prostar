@@ -1,0 +1,142 @@
+-. mainAPI ver0.38 [30Dec2015]
+   1. enable dither function when 8bit output mode in main block
+   2. fix the problem when 1080i to 576i as aspect-ratio(16:9) in main block
+      (by using progressive ipc mode)
+   3. fix h-mirror in aux block
+   4. fix hdmi hdcp Ri128 operation
+   5. fix hdmi audio nVal setting
+   6. add the enable condition of fld2frm mode for ntsc output in aux block (ex.640x480 to ntsc)
+   7. add MDIN3xx_SetLineDeci() function (vertical decimation function in main block)
+   8. add MDIN3xx_EnableDigitalBypass() function (input to output digital bypass in main block)
+
+-. mainAPI ver0.37 [08Dec2014]
+   1. fix mfc filter bilinear filter enable condition (related with ipc 2-tap mode)
+   2. fix main_skip_dis condition (always "1" if interlaced video input)
+   3. add hsplit(left/right)/vsplit(up/down) mode in 4D1 mode
+   4. change the MDIN3xx_ResetOutSync() function call position in code (for output vsync phase fix)
+   5. add MDIN3xx_EnableDACBypass() function
+   6. add MDIN3xx_EnableHDMIBypass() function
+   7. fix the value of aux_rd_ext_buf = "0" -> "1" in 4D1 multi-window mode (for memory b/w)
+   8. fix aux skip register related with CVBS output (no use aux_skip_only_en; tearing problem)
+   9. add MDINAUX_SetOutTestPattern() function
+   10. add MDINAUX_SetEncTestPattern() function
+
+-. mainAPI ver0.36 [27May2013]
+   1. add pip chroma key functions
+   2. add external lock functions
+   3. add preload registers setting for scaling up (smooth zoom-in)
+   4. enable sync reset delay : sync_reset_dly_en=1, sync_reset_on_field=1
+   5. fix hdmi audio N value output for 59.94Hz
+   6. fix the problem in case of progressive input & v-down scale & 3d nr on
+   7. fix mfc vertical filter coefficient when 1080p input to 1080i output
+   8. fix aux front low-pass filter coefficient condition
+   9. optimize input & output csc functions (main & aux)
+   10. add input resolution (1920x1080p24)
+   11. add output resolution (1920x1080p29.97)
+   12. fix 1920x1080i50 output timing
+
+-. mainAPI ver0.35 [04Jan2013]
+   1. add input resolution (1600x1200p60, 1680x1050p60, 1920x1200p60(RB))
+   2. fix input resolution in defMDINSrcVideo[] (add 1366x768p60)
+   3. change digital output blank level on Y (0 -> 16)
+   4. change MDIN_FIELDID_BYPASS to MDIN_FIELDID_INPUT in app380.c, app380_4D1.c
+
+-. mainAPI ver0.34 [18Sep2012]
+   1. fix RGB full range level(0~255) clipping
+   2. add h-mirror function in main block
+   3. add hdmi audio delay function
+   4. fix hdmi 1080i output timing (field-id)
+   5. fix hdmi output sync polarity from aux output when 4D1 or 2HD mode
+   6. fix hdmi output VIC infomation from aux output when 4D1 or 2HD mode
+
+-. mainAPI ver0.33 [16Aug2012]
+   1. fix 3d nr function when progressive input & v-down scale (for API release code)
+   2. fix the problem when 1080i input & use 10bit process mode
+   3. fix 1080i output timing
+   4. enable aux anti-aliasing filter
+   5. change input csc range from std range to full range
+
+-. mainAPI ver0.32 [24July2012]
+   1. add input resolution. (1366x768p60)
+   2. add output resolution. (1366x768p60, 1400x1050p60)
+   3. disable NR truncation when over NR level 43. (for strong NR)
+   4. add zoom in function
+
+-. mainAPI ver0.31 [02May2012]
+   1. fix HDCP compile error for MDIN340,380
+   2. fix 3d nr function when progressive 25,30fps output
+   3. add input offset parameters in app3xx.c (offH=0, offV=0)
+
+-. mainAPI ver0.30 [30Mar2012]
+   1. fix 3d nr function when progressive input & v-down scale
+   2. add progressive ipc mode
+      (=> fix the problem when 1080i input to 480i output in MAIN block)
+   3. change the on/off condition for 3d nr
+   4. change the on/off condition for c-intra processing
+      (=> improve chroma h-line flicker, fix the problem when 576i -> 480i)
+   5. fix the problem when 1080i input to PAL output in AUX block
+   6. fix the problem when 480p input to PAL output in AUX block
+   7. enable color enhancement filter default setting
+
+-. mainAPI ver0.28 [29Feb2012]
+   1. add 4 x D1 960H input mode
+       ( modified mdintype.h, mdin3xx.c, mdinaux.c, mdinfrmt.c, app325a_4D1.c, app380_4D1.c )
+
+-. mainAPI ver0.27 [27Feb2012]
+   1. fix MDIN3xx_SetSkinTonFilterCoef to MDIN3xx_SetColorTonFilterCoef in app3xx.c
+   2. delete header define lines.
+   3. fix MDINDLY_10uSec(), MDINDLY_mSec() in mdindly.c
+   4. fix MDINI2C_Write(), MDINI2C_Read() in mdini2c.c
+
+-. mainAPI ver0.26 [13Feb2012]
+   1. fix HDMI output 480i/576i at MDIN340
+   2. change output csc from std-range to full-range
+   3. film mode default off
+   4. aux memory off at MDIN340
+
+-. mainAPI ver0.25 [28Dec2011]
+   1. fix HDMI output 480i/576i at MDIN380
+
+-. mainAPI ver0.24 [22Dec2011]
+   1. fix HDMI register read problem at MDIN380
+
+-. mainAPI ver0.23 [14Dec2011]
+   1. fix Main B, Aux A input mode
+   2. fix the bug.
+
+-. mainAPI ver0.22 [05Dec2011]
+   1. add 4D1 input mode at MDIN325A
+   2. fix the bug.
+
+-. mainAPI ver0.21 [28Oct2011]
+   1. fix Progressive input Down scale problem (3D NR)
+	
+-. mainAPI ver0.21 [26Oct2011]
+   1. add out resolution 
+   	1920x1080i@59.94, 1920x1080p@59.94, 
+   	1920x1080p@30, 1920x1080p@25, 1920x1080p@24
+   	1280x720p@59.94
+   	1280x720p@30, 1280x720p@25, 1280x720p@24
+   2. fix the bug (HDMI Tx initialize when 4D1 input mode)
+   3. tunning others for CPSE show
+   	- Motion border, Noise Robust, Film mode
+   	- Block match, Fast motionn, Block NR, Mosquito NR
+
+-. mainAPI ver0.2 [26Aug2011]
+   1. fix the bug (4D1 input mode)
+
+-. mainAPI ver0.2 [23Aug2011]
+   1. modify 4D1 input mode. (Quad 1600x1200@50(25)Hz output)
+
+-. mainAPI ver0.2 [12Aug2011]
+   1. add 4D1 input mode. (Quad output, 656 output)
+
+-. mainAPI ver0.2 [01Jul2011]
+   1. add ultra-NR function.
+   2. change 3DNR range from 0~63 to 0~60.(recommand : 34)
+   3. normal 3DNR range : 0~50, ultra 3DNR range : 51~60.
+
+-. mainAPI ver0.2 [23Jun2011]
+   1. fix HDMI-TX compliance test.
+   2. add mask-revision code.
+   3. fix the bug (major & minor).

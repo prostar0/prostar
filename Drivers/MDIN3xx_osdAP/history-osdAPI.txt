@@ -1,0 +1,12 @@
+-. osdAPI ver0.24 [02May2012]
+	1. fix the problem on memory address calculation in gac3xx.c
+
+-. osdAPI ver0.23 [14Dec2011]
+	1. fix GAC xyMode function. 
+	(position setting)
+	
+-. osdAPI ver0.21 [05Dec2011]
+	1. fix GAC xyMode function.
+	
+-. osdAPI ver0.2 [23Jun2011]
+	1. fix rectangle-filling function.
